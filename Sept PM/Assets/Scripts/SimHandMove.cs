@@ -8,6 +8,13 @@ public class SimHandMove : MonoBehaviour
     public float moveSpeed = 3.0f;
     public float turnSpeed = 15.0f;
     public bool clicked = false;
+
+    public Vector3 velocity;
+    public Vector3 angularVelocity;
+
+    private Vector3 previousPosition;
+    private Vector3 previousAngularRotation;
+
     private void Start()
     {
         // Start() local space
@@ -63,20 +70,22 @@ public class SimHandMove : MonoBehaviour
             this.transform.Rotate(Vector3.down * Time.deltaTime * turnSpeed, Space.World);   // rotate left
         }
 
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKey(KeyCode.E))
+        {
+            this.transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed, Space.World);      // rotate right
+        }
+
+        if (Input.GetKey(KeyCode.Z))
         {
             this.transform.Rotate(Vector3.right * Time.deltaTime * turnSpeed, Space.World);  // rotate forward
         }
 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.C))
         {
-            this.transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed, Space.World);     // rotate right
+            this.transform.Rotate(Vector3.left * Time.deltaTime * turnSpeed, Space.World);     // rotate backward
         }
-        if (Input.GetKey(KeyCode.E))
-        {
-            this.transform.Rotate(Vector3.left * Time.deltaTime * turnSpeed,Space.World);      // rotate up
-        }
-        
+
+
         #endregion
 
         #region Rotate using Mouse
@@ -85,6 +94,12 @@ public class SimHandMove : MonoBehaviour
         this.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * turnSpeed, Space.World);
         */
         #endregion
+
+        velocity = (this.transform.position - previousPosition) / Time.deltaTime;
+        previousPosition = this.transform.position;
+
+        angularVelocity = (this.transform.eulerAngles - previousAngularRotation) / Time.deltaTime;
+        previousAngularRotation = this.transform.eulerAngles;
     }
 
     public void Bob()

@@ -7,10 +7,16 @@ public class VRInput : MonoBehaviour
     public bool isLeftHand;         // if isLeftHand is true, then the script is attached to the left hand
     public float triggerValue;
     public float gripValue;
+    public Vector3 velocity;
+    public Vector3 angularVelocity;
+
+    private Vector3 previousPosition;
+    private Vector3 previousAngularRotation;
 
     private string triggerAxis;
     private string gripAxis;
 
+    
     
     void Start()
     {
@@ -38,5 +44,11 @@ public class VRInput : MonoBehaviour
         {
             gripValue = Input.GetAxis(gripAxis);
         }
+
+        velocity = (this.transform.position - previousPosition) / Time.deltaTime;
+        previousPosition = this.transform.position;
+
+        angularVelocity = (this.transform.eulerAngles - previousAngularRotation) / Time.deltaTime;
+        previousAngularRotation = this.transform.eulerAngles;
     }
 }

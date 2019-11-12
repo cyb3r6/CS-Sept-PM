@@ -6,10 +6,11 @@ public class GrabbableObjectSimHand : MonoBehaviour
 {
     public SimHandMove simHandController;
     public bool isBeingHeld;
+    public float forceMultiplier;
 
     void Update()
     {
-        if(isBeingHeld == true)// && simHandController == null)
+        if(isBeingHeld == true)
         {
             simHandController = GetComponentInParent<SimHandMove>();
 
@@ -53,6 +54,7 @@ public class GrabbableObjectSimHand : MonoBehaviour
         this.transform.SetParent(null);
         this.GetComponent<Rigidbody>().useGravity = true;
         this.GetComponent<Rigidbody>().isKinematic = false;
+        this.GetComponent<Rigidbody>().velocity = simHandController.velocity * forceMultiplier / this.GetComponent<Rigidbody>().mass;
         Debug.Log("Release has been called");
     }
 }

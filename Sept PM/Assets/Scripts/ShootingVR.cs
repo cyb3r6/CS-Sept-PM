@@ -21,7 +21,7 @@ public class ShootingVR : MonoBehaviour
     {
         if(grabbableObject.isBeingHeld == true)
         {
-            controller = grabbableObject.GetComponent<VRInput>();
+            controller = grabbableObject.controller;
 
             if (controller)
             {

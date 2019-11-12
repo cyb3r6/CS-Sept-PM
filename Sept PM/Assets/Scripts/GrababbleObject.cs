@@ -6,7 +6,7 @@ public class GrababbleObject : MonoBehaviour
 {
     public VRInput controller;
     public bool isBeingHeld;
-
+    public float forceMultiplier;
     void Update()
     {
         if(isBeingHeld == true)// && controller == null)
@@ -55,7 +55,7 @@ public class GrababbleObject : MonoBehaviour
         this.transform.SetParent(null);
         this.GetComponent<Rigidbody>().isKinematic = false;
         this.GetComponent<Rigidbody>().useGravity = true;
-
+        this.GetComponent<Rigidbody>().velocity = controller.velocity  * forceMultiplier / this.GetComponent<Rigidbody>().mass;
         isBeingHeld = false;
     }
 }
