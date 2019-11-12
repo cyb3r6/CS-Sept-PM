@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ARVuforia.unity
     guid: 16b45aec02828c34e9203ea2987642f1
+  - enabled: 1
+    path: Assets/Scenes/UtilityAR.unity
+    guid: 0c8b53ea11de446438a196283484e5f5
   m_configObjects: {}
