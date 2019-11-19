@@ -8,7 +8,7 @@ public class SimHandMove : MonoBehaviour
     public float moveSpeed = 3.0f;
     public float turnSpeed = 15.0f;
     public bool clicked = false;
-
+    public bool isThumbStickPressed;
     public Vector3 velocity;
     public Vector3 angularVelocity;
 
@@ -31,6 +31,14 @@ public class SimHandMove : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             clicked = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            isThumbStickPressed = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            isThumbStickPressed = false;
         }
 
         #region movement
@@ -109,9 +117,3 @@ public class SimHandMove : MonoBehaviour
     }
 
 }
-
-
-
-
-
-

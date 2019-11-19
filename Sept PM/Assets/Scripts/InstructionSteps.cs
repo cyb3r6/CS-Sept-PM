@@ -13,30 +13,19 @@ public class InstructionSteps : MonoBehaviour
     private int currentStep = 0;
     private GameObject currentCanvas;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void TurnOnInitializingHeatCanvas()
     {
         intializeHeatCanvas.SetActive(true);
         mainMenuCanvas.SetActive(false);
 
         steps.Clear();
+
         for(int i = 0; i < intializeHeatCanvas.transform.childCount - 1; i++)
         {
             steps.Add(intializeHeatCanvas.transform.GetChild(i).gameObject);
             Debug.Log("Steps are: " + steps[i]);
         }
+
         currentCanvas = intializeHeatCanvas;
     }
 
@@ -53,8 +42,9 @@ public class InstructionSteps : MonoBehaviour
             Debug.Log("Steps are: " + steps[i]);
         }
         currentCanvas = saltWaterCanvas;
-
     }
+
+
 
     public void NextStep()
     {

@@ -7,6 +7,7 @@ public class VRInput : MonoBehaviour
     public bool isLeftHand;         // if isLeftHand is true, then the script is attached to the left hand
     public float triggerValue;
     public float gripValue;
+    public bool isThumbStickPressed;
     public Vector3 velocity;
     public Vector3 angularVelocity;
 
@@ -15,6 +16,7 @@ public class VRInput : MonoBehaviour
 
     private string triggerAxis;
     private string gripAxis;
+    private string thumbstickButton;
 
     
     
@@ -24,11 +26,13 @@ public class VRInput : MonoBehaviour
         {
             triggerAxis = "LeftTrigger";
             gripAxis = "LeftGrip";
+            thumbstickButton = "LeftThumbstickButton";
         }
         else
         {
             triggerAxis = "RightTrigger";
             gripAxis = "RightGrip";
+            thumbstickButton = "RightThumbstickButton";
         }
     }
 
@@ -44,6 +48,15 @@ public class VRInput : MonoBehaviour
         {
             gripValue = Input.GetAxis(gripAxis);
         }
+        if (Input.GetButtonDown(thumbstickButton))
+        {
+            isThumbStickPressed = true;
+        }
+        if (Input.GetButtonUp(thumbstickButton))
+        {
+            isThumbStickPressed = false;
+        }
+
 
         velocity = (this.transform.position - previousPosition) / Time.deltaTime;
         previousPosition = this.transform.position;
