@@ -32,11 +32,11 @@ public class SimHandMove : MonoBehaviour
         {
             clicked = false;
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             isThumbStickPressed = true;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.T))
         {
             isThumbStickPressed = false;
         }

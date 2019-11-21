@@ -64,4 +64,6 @@ public class VRInput : MonoBehaviour
         angularVelocity = (this.transform.eulerAngles - previousAngularRotation) / Time.deltaTime;
         previousAngularRotation = this.transform.eulerAngles;
     }
+
+    
 }

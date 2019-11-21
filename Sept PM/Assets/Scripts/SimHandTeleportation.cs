@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SimHandTeleportation : MonoBehaviour
 {
+    [Tooltip("This is the transform we want to teleport")]
     public Transform simHand;
 
     private SimHandMove simHandController;
@@ -32,7 +33,18 @@ public class SimHandTeleportation : MonoBehaviour
                     hitPosition = hit.point;
                     line.SetPosition(0, simHandController.transform.position);
                     line.SetPosition(1, hitPosition);
+                    line.enabled = true;
 
+                    shouldTeleport = true;
+                }
+            }
+            else if(simHandController.isThumbStickPressed == false)
+            {
+                if(shouldTeleport == true)
+                {
+                    simHand.transform.position = hitPosition;
+                    shouldTeleport = false;
+                    line.enabled = false;
                 }
             }
         }
