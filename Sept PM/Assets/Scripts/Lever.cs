@@ -11,6 +11,11 @@ public class Lever : MonoBehaviour
     public Material skyboxMaterial1;
     public Material skyboxMaterial2;
 
+
+    private void Update()
+    {
+        Debug.Log(this.transform.localEulerAngles.x);
+    }
     private void OnTriggerStay(Collider other)
     {
         simHandController = other.GetComponent<SimHandMove>();
@@ -21,13 +26,16 @@ public class Lever : MonoBehaviour
             {
                 Vector3 PositionToLookAt = new Vector3(transform.position.x, other.transform.position.y, other.transform.position.z);
 
-                PositionToLookAt.y = Mathf.Clamp(transform.position.y, minValue, maxValue);
+                //PositionToLookAt.z = Mathf.Clamp(transform.position.z, minValue, maxValue);
+                Debug.Log(PositionToLookAt);
 
-                if(PositionToLookAt.y == maxValue)
+                if(this.transform.localEulerAngles.x == maxValue)
                 {
+                    //transform.localEulerAngles.x = maxValue;
+
                     OnMax();
                 }
-                if(PositionToLookAt.y == minValue)
+                if(this.transform.localEulerAngles.x == minValue)
                 {
                     OnMin();
                 }
